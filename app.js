@@ -116,6 +116,9 @@ app.use("/",userRouter);
 // console.log("sample was save");
 // res.send("successful testing");
 // });
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
 
 app.all("*",(req,res,next)=>{
     next(new ExpressError(404,"page not found"));});
@@ -130,4 +133,5 @@ const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`✅ Server is listening on port ${port}`);
 });
+
 
