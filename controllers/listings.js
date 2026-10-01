@@ -32,10 +32,27 @@ module.exports.createListing=async(req,res,next)=>{
     newListing.owner=req.user._id;
     newListing.image={url,filename};
       // 🌍 Fetch coordinates from Nominatim
-  const response = await fetch(
-    `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(newListing.location)}`
-  );
-  const data = await response.json();
+  // const response = await fetch(
+  //   `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(newListing.location)}`
+  // );
+  // const data = await response.json();
+const response = await fetch(
+  `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(newListing.location)}`,
+  {
+    headers: {
+      "User-Agent": "Wanderlust/1.0 (itsalishba00@gmail.com)",
+      "Accept": "application/json",
+      "Referer": "http://localhost:5000/"
+    }
+  }
+);
+
+if (!response.ok) {
+  const text = await response.text();
+  throw new Error(`Geocoding failed: ${response.status} ${response.statusText} - ${text}`);
+}
+
+const data = await response.json();
 
   if (data.length > 0) {
     newListing.geometry = {
