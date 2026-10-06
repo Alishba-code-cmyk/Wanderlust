@@ -6,9 +6,9 @@ The project was built to understand how a real-world web application works acros
 
 ##  Live Demo
 
-🔗 **Live Demo:** [https://your-project-name.onrender.com](https://wanderlust-mom6.onrender.com/listings)
+🔗 **Link** (https://wanderlust-mom6.onrender.com/listings)
 
-## 📌 Features
+## Features
 
 ###  User Authentication
 - User registration and login
